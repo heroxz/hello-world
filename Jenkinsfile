@@ -1,7 +1,7 @@
 pipeline {
    agent none
-   parameters {
-      string(name: 'ESX_BUILD_ID', defaultValue: '00000000', description: '')
+   environment {
+      ESX_BUILD_ID = '00000000'
    }
    stages {
         stage('Build') {
@@ -14,6 +14,9 @@ pipeline {
                    echo "Multiline shell steps works too"
                    ls -lah
                 '''
+                withEnv(['ESX_BUILD_ID=`/usr/bin/python3 ./getBuildInfo.py`']) {
+                  echo '$ESX_BUILD_ID'
+                }
             }
         }
         stage('Test') {
@@ -21,7 +24,7 @@ pipeline {
                label 'nimbus-worker'
             }
             steps {
-               echo "Hello ${params.ESX_BUILD_ID}"
+               echo "$ESX_BUILD_ID"
             }
         }
     }
