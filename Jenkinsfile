@@ -21,7 +21,7 @@ pipeline {
                label 'nimbus-worker'
             }
             steps {
-               sh 'echo "Hello ${params.ESX_BUILD_ID}"'
+               echo "Hello ${params.ESX_BUILD_ID}"
             }
         }
     }
