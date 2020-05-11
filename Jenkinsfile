@@ -14,6 +14,8 @@ pipeline {
                    echo "Multiline shell steps works too"
                    ls -lah
                 '''
+                sh 'export esx_build= `/usr/bin/python3 ./getBuildInfo.py`'
+                echo '$esx_build'
                 withEnv(['ESX_BUILD_ID=`/usr/bin/python3 ./getBuildInfo.py`']) {
                   echo '$ESX_BUILD_ID'
                 }
