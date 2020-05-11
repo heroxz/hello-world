@@ -1,10 +1,15 @@
 pipeline {
-   agent {
-      docker {image 'node:7-alpine' }
+   agent none
+   parameters {
+      string(name: 'ESX_BUILD_ID', defaultValue: '00000000', description: '')
    }
    stages {
         stage('Build') {
+            agent {
+               label 'nimbus-worker'
+            }
             steps {
+                
                 sh 'echo "Hello Jenkins"'
                 sh '''
                    echo "Multiline shell steps works too"
