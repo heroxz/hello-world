@@ -9,7 +9,6 @@ pipeline {
                label 'nimbus-worker'
             }
             steps {
-                
                 sh 'echo "Hello Jenkins"'
                 sh '''
                    echo "Multiline shell steps works too"
@@ -22,7 +21,7 @@ pipeline {
                label 'nimbus-worker'
             }
             steps {
-               sh "Hello ${params.ESX_BUILD_ID}"
+               sh 'echo "Hello ${params.ESX_BUILD_ID}"'
             }
         }
     }
