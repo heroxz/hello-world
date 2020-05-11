@@ -18,8 +18,11 @@ pipeline {
             }
         }
         stage('Test') {
+            agent {
+               label 'nimbus-worker'
+            }
             steps {
-               sh 'node --version'
+               sh "Hello ${params.ESX_BUILD_ID}"
             }
         }
     }
